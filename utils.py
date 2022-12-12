@@ -5,7 +5,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-def process_rewards(rewards, gamma=1):
+def cum_G_t(rewards, gamma=1):
     G = []
     cum_sum = 0
     for r in reversed(rewards):
@@ -18,7 +18,7 @@ def process_rewards(rewards, gamma=1):
 
 
 def G_t(trajectory, gamma=1):
-    rewards = [reward for _, _, reward in trajectory]
+    rewards = [reward for _, _, _, reward in trajectory]
     _return = functools.reduce(
         lambda _return, reward: _return + reward[1] * pow(gamma, reward[0]),
         enumerate(rewards),
