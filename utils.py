@@ -30,11 +30,14 @@ def G_t(trajectory, gamma=1):
 
 def plot_t_per_episode(metrics):
     t_mean = np.array(metrics["t"]).mean(axis=0)
-    t_std = np.array(metrics["t"]).std(axis=0)
+    # t_std = np.array(metrics["t"]).std(axis=0)
     episodes = np.arange(len(t_mean))
 
     plt.yticks(ticks=(np.arange(10)*100))
-    plt.errorbar(episodes, t_mean, t_std, linestyle=None, marker=None, ecolor="#bfe6ff")
+    plt.xlabel("Count of Episodes")
+    plt.ylabel("Count of Actions")
+    plt.plot(episodes, t_mean)
+    # plt.errorbar(episodes, t_mean, t_std, linestyle=None, marker=None, ecolor="#bfe6ff")
 
 
 def plot_action_per_episode(metrics):
@@ -46,6 +49,8 @@ def plot_action_per_episode(metrics):
             for episode, t in enumerate(t_mean)
         )
     )
+    plt.xlabel("Total Count of Actions")
+    plt.ylabel("Count of Episodes")
     plt.plot(t_mean)
 
 
